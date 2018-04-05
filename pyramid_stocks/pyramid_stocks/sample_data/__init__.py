@@ -82,59 +82,97 @@ MOCK_DATA = [
                 "sector": "Health Care"
             },
             {
-                "symbol": "",
-                "companyName": "",
+                "symbol": "SAN",
+                "companyName": "Banco Santander",
                 "exchange": "New York Stock Exchange",
-                "industry": "",
-                "website": "",
-                "description": "",
+                "industry": "Commercial Banks",
+                "website": "https://www.bancosantander.es/es/particulares",
+                "description": "We were formed on August 1, 2002 through the \
+                 merger of   Santiago and Old  Santander-Chile, both of which \
+                 were subsidiaries of our controlling shareholder,  Banco \
+                 Santander Central Hispano. We are the largest bank in Chile \
+                 in terms of  total assets, total deposits, loans and \
+                 shareholders? equity. At December 31,  2006, we had total \
+                 assets of Ch$14,843,439 million (US$27,774 million), loans  \
+                 net of allowances outstanding of Ch$11,614,895 million \
+                 (US$21,733 million),  deposits of Ch$9,392,332 million \
+                 (US$17,574 million) and shareholders? equity of  \
+                 Ch$1,245,339 million (US$2,330 million).",
                 "CEO": "Lorem ipsum",
-                "issueType": "",
-                "sector": ""
+                "issueType": "cs",
+                "sector": "Finance"
             },
             {
-                "symbol": "",
-                "companyName": "",
+                "symbol": "WAT",
+                "companyName": "Waters Corp",
                 "exchange": "New York Stock Exchange",
-                "industry": "",
-                "website": "",
-                "description": "",
+                "industry": "Biotechnology: Laboratory Analytical Instruments",
+                "website": "http://www.waters.com/waters/home.htm?locale=en_US",
+                "description": "Waters Corporation (?Waters? or the ?Company?), \
+                 an analytical instrument  manufacturer, designs, \
+                 manufactures, sells and services, through its Waters  \
+                 Division, high performance liquid chromatography \
+                 (?HPLC?), ultra performance  liquid chromatography? \
+                 (?UPLC? and together with HPLC, herein referred to as  ?LC?) \
+                 and mass spectrometry (?MS?) instrument systems and support \
+                 products,  including chromatography columns, other \
+                 consumable products and comprehensive  post-warranty \
+                 service plans.",
                 "CEO": "Lorem ipsum",
-                "issueType": "",
-                "sector": ""
+                "issueType": "cs",
+                "sector": "Capital Goods"
             },
             {
-                "symbol": "",
-                "companyName": "",
+                "symbol": "ZF",
+                "companyName": "Zweig Fund",
                 "exchange": "New York Stock Exchange",
-                "industry": "",
-                "website": "",
-                "description": "",
+                "industry": "Closed-End Fund - Debt",
+                "website": "http://ir.virtus.com/",
+                "description": "Prior to the open of trading on the NYSE today, \
+                each share of DCA common stock converted into an equivalent \
+                dollar amount (to the nearest $0.0001) of shares of \
+                common stock of ZF. The conversion price was based on \
+                each fund's net asset value (NAV) per share calculated \
+                at the close of business on Friday, March 31, 2017:",
                 "CEO": "Lorem ipsum",
-                "issueType": "",
-                "sector": ""
+                "issueType": "cs",
+                "sector": "Finance"
             },
             {
-                "symbol": "",
-                "companyName": "",
+                "symbol": "ZEN",
+                "companyName": "Zendesk Inc",
                 "exchange": "New York Stock Exchange",
-                "industry": "",
-                "website": "",
-                "description": "",
+                "industry": "Consulting",
+                "website": "https://www.zendesk.com/about/",
+                "description": "Donec laoreet purus bibendum nisl \
+                 tincidunt malesuada eget sit amet nisi. Nunc feugiat ac \
+                 orci eget condimentum. Vestibulum eleifend massa nisi, \
+                 vitae sagittis tellus pharetra ac. Aenean purus metus, \
+                 varius nec tellus ac, porttitor ornare quam. In posuere \
+                 quis turpis sit amet lobortis. Curabitur consectetur \
+                 facilisis mauris, at convallis ante elementum in. \
+                 Sed pellentesque, dolor ut posuere accumsan, eros \
+                 tortor fringilla sem, non ultrices eros turpis non odio.",
                 "CEO": "Lorem ipsum",
-                "issueType": "",
-                "sector": ""
+                "issueType": "cs",
+                "sector": "Consulting"
             },
             {
-                "symbol": "",
-                "companyName": "",
+                "symbol": "NCA",
+                "companyName": "Nuveen California Muni Value Fund",
                 "exchange": "New York Stock Exchange",
-                "industry": "",
-                "website": "",
-                "description": "",
+                "industry": "Closed-End Fund - Debt",
+                "website": "https://www.nuveen.com/closed-end-funds/NCA",
+                "description": "The fund invests in municipal securities \
+                 that are exempt from federal and California state \
+                 income taxes. The fund invests at least 80% of its \
+                 managed assets in securities rated, at the time of \
+                 investment, investment grade (Baa/BBB or better by \
+                 S&P, Moody’s, or Fitch) or, if they are unrated, are \
+                 judged by the manager to be of comparable quality. ",
                 "CEO": "Lorem ipsum",
-                "issueType": "",
-                "sector": ""
+                "issueType": "cs",
+                "sector": "Finance"
             }
 
 ]
