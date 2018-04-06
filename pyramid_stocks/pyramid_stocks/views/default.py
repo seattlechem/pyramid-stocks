@@ -7,25 +7,26 @@ from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 @view_config(route_name='home', renderer='../templates/base.jinja2')
 def my_view(request):
     """ Route back to homepage """
-    if request.method == 'GET':
-        try:
-            username = request.GET['username']
-            password = request.GET['password']
-            print('User: {}, Pass: {}'.format(username, password))
+    return {}
+    # if request.method == 'GET':
+    #     try:
+    #         username = request.GET['username']
+    #         password = request.GET['password']
+    #         print('User: {}, Pass: {}'.format(username, password))
 
-            return HTTPFound(location=request.route.url('portfolio'))
+    #         return HTTPFound(location=request.route.url('portfolio'))
 
-        except KeyError:
-            return {}
+    #     except KeyError:
+    #         return {}
 
-    if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        print('User: {}, Pass: {}, Email: {}'.format(
-                                             username, password, email))
+    # if request.method == 'POST':
+    #     username = request.POST['username']
+    #     email = request.POST['email']
+    #     password = request.POST['password']
+    #     print('User: {}, Pass: {}, Email: {}'.format(
+    #                                          username, password, email))
 
-        return HTTPFound(location=request.route.url('portfolio'))
+    #     return HTTPFound(location=request.route.url('portfolio'))
 
     return HTTPNotFound()
 
