@@ -1,8 +1,9 @@
 from pyramid.response import Response
 from pyramid.view import view_config
+from ..sample_data import MOCK_DATA
 
 
-@view_config(route_name='home', renderer='../templates/index.jinja2')
+@view_config(route_name='home', renderer='../templates/base.jinja2')
 def my_view(request):
     """ Route back to homepage """
     return {}
@@ -26,11 +27,15 @@ def searching_stock_ticker(request):
              request_method='GET')
 def view_existing_stocks(request):
     """ display user's existing stocks"""
-    return {}
+    return {'entries': MOCK_DATA}
 
 
 @view_config(route_name='detail', renderer='../templates/stock_detail.jinja2',
              request_method='GET')
 def get_detail_view(request):
     """ detail about a user's existing stock """
+    # for entry in MOCK_DATA:
+        import pdb; pdb.set_trace()
+        # if entry['symbol'] == request['id']:
+        #     return {'result': entry}
     return {}
