@@ -14,18 +14,19 @@ def my_view(request):
             print('User: {}, Pass: {}'.format(username, password))
 
             return HTTPFound(location=request.route.url('portfolio'))
-        
+
         except KeyError:
             return {}
-        
+
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
-        print('User: {}, Pass: {}, Email: {}'.format(username, password, email))
+        print('User: {}, Pass: {}, Email: {}'.format(
+                                             username, password, email))
 
         return HTTPFound(location=request.route.url('portfolio'))
-    
+
     return HTTPNotFound()
 
 
@@ -56,6 +57,6 @@ def get_detail_view(request):
     """ detail about a user's existing stock """
     symbol = request.matchdict['symbol']
     for entry in MOCK_DATA:
-        if entry[symbol] == symbol:
+        if entry['symbol'] == symbol:
             return {'result': entry}
     return {}
