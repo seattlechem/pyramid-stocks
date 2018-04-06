@@ -107,7 +107,7 @@ MOCK_DATA = [
                 'companyName': 'Waters Corp',
                 'exchange': 'New York Stock Exchange',
                 'industry': 'Biotechnology: Laboratory Analytical Instruments',
-                'website': 'http://www.waters.com/waters/home.htm?locale=en_US',
+                'website': 'http://www.waters.com/',
                 'description': 'Waters Corporation (?Waters? or the ?Company?), \
                  an analytical instrument  manufacturer, designs, \
                  manufactures, sells and services, through its Waters  \

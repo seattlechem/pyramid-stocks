@@ -34,4 +34,8 @@ def view_existing_stocks(request):
              request_method='GET')
 def get_detail_view(request):
     """ detail about a user's existing stock """
+    # for entry in MOCK_DATA:
+        import pdb; pdb.set_trace()
+        # if entry['symbol'] == request['id']:
+        #     return {'result': entry}
     return {}
