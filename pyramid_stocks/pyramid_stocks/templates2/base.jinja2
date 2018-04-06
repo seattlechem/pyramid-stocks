@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{request.static_url('pyramid_stocks:static/normalize.css')}}">
+    <link rel="stylesheet" href="{{request.static_url('pyramid_stocks:static/style.css')}}">
+    <title>Stock Portfolio</title>
+    
+</head>
+<body>
+    <nav>
+      <ul>
+        <li><a href="{{ request.route_url('home') }}">Home</a></li>
+        <li><a href="{{ request.route_url('auth') }}">Auth</a></li>
+        <li><a href="{{ request.route_url('stock') }}">Stock</a></li>
+        <li><a href="{{ request.route_url('portfolio') }}">Portfolio</a></li>
+        <li><a href="{{ request.route_url('detail') }}">Detail</a></li>
+      </ul>
+    </nav>
+    <h1>Stock Portfolio</h1>
+    {% block content %}
+    <p>No contents</p>
+    {% endblock content %}
+    
+</body>
+</html>

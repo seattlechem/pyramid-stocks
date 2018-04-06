@@ -1,0 +1,30 @@
+{% extends "base.jinja2" %}
+
+{% block content %}
+    <h1>Registration:</h1>
+
+    <form id="registration-form" method="POST" action="{{request.route_url('auth')}}">
+        <label for="username">Username</label>
+        <input type="text" name="username">
+
+        <label for="email">"Email"</label>
+        <input type="email" name="email">
+
+        <label for="password">Password</label>
+        <input type="password" name="password">
+
+        <input type="submit" name="submit" value="registration">
+    </form>
+    <h1>Login:</h1>
+
+    <form id="registration-form" method="GET" action="{{request.route_url('auth')}}">
+        <label for="username">Username</label>
+        <input type="text" name="username">
+    
+        <label for="password">Password</label>
+        <input type="password" name="password">
+    
+        <input type="submit" name="submit" value="login">
+    </form>
+    
+{% endblock content %}

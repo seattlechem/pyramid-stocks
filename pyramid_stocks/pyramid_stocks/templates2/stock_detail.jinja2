@@ -1,0 +1,15 @@
+{% extends "base.jinja2" %}
+
+{% block content %}
+    <h1>Stock Detail</h1>
+    <p>Symbol: {{result.symbol}}</p>
+    <p>Company Name: {{result.compnayName}}</p>
+    <p>Exchange: {{result.exchange}}</p>
+    <p>Industry: {{result.industry}}</p>
+    <p><a href="{{result.website}}">Website</a></p>
+    <p>Description: {{result.description}}</p>
+    <p>CEO: {{result.CEO}}</p>
+    <p>Issue Type: {{result.issueType}}</p>
+    <p>Sector: {{result.sector}}</p>
+    
+{% endblock content %}
