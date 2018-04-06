@@ -1,12 +1,32 @@
 from pyramid.response import Response
 from pyramid.view import view_config
 from ..sample_data import MOCK_DATA
+from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 
 
 @view_config(route_name='home', renderer='../templates/base.jinja2')
 def my_view(request):
     """ Route back to homepage """
-    return {}
+    if request.method == 'GET':
+        try:
+            username = request.GET['username']
+            password = request.GET['password']
+            print('User: {}, Pass: {}'.format(username, password))
+
+            return HTTPFound(location=request.route.url('portfolio'))
+        
+        except KeyError:
+            return {}
+        
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        print('User: {}, Pass: {}, Email: {}'.format(username, password, email))
+
+        return HTTPFound(location=request.route.url('portfolio'))
+    
+    return HTTPNotFound()
 
 
 @view_config(route_name='auth', renderer='../templates/register.jinja2',
@@ -34,8 +54,8 @@ def view_existing_stocks(request):
              request_method='GET')
 def get_detail_view(request):
     """ detail about a user's existing stock """
-    # for entry in MOCK_DATA:
-        import pdb; pdb.set_trace()
-        # if entry['symbol'] == request['id']:
-        #     return {'result': entry}
+    symbol = request.matchdict['symbol']
+    for entry in MOCK_DATA:
+        if entry[symbol] == symbol:
+            return {'result': entry}
     return {}

@@ -4,4 +4,4 @@ def includeme(config):
     config.add_route('auth', '/auth')
     config.add_route('stock', '/stock')
     config.add_route('portfolio', '/portfolio')
-    config.add_route('detail', '/portfolio/')
+    config.add_route('detail', '/portfolio/{symbol}')
