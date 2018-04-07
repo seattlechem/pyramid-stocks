@@ -8,34 +8,33 @@ from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 def my_view(request):
     """ Route back to homepage """
     return {}
-    # if request.method == 'GET':
-    #     try:
-    #         username = request.GET['username']
-    #         password = request.GET['password']
-    #         print('User: {}, Pass: {}'.format(username, password))
-
-    #         return HTTPFound(location=request.route.url('portfolio'))
-
-    #     except KeyError:
-    #         return {}
-
-    # if request.method == 'POST':
-    #     username = request.POST['username']
-    #     email = request.POST['email']
-    #     password = request.POST['password']
-    #     print('User: {}, Pass: {}, Email: {}'.format(
-    #                                          username, password, email))
-
-    #     return HTTPFound(location=request.route.url('portfolio'))
-
-    return HTTPNotFound()
 
 
 @view_config(route_name='auth', renderer='../templates/register.jinja2',
              request_method='GET')
 def register_page(request):
     """ Open register page """
-    return {}
+    if request.method == 'GET':
+        try:
+            username = request.GET['username']
+            password = request.GET['password']
+            print('User: {}, Pass: {}'.format(username, password))
+
+            return HTTPFound(location=request.route.url('portfolio'))
+
+        except KeyError:
+            return {}
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        print('User: {}, Pass: {}, Email: {}'.format(
+                                             username, password, email))
+
+        return HTTPFound(location=request.route.url('portfolio'))
+
+    return HTTPNotFound()
 
 
 @view_config(route_name='stock', renderer='../templates/stock_add.jinja2',
