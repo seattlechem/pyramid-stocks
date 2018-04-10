@@ -8,17 +8,6 @@ import requests
 @view_config(route_name='home', renderer='../templates/base.jinja2')
 def my_view(request):
     """ Route back to homepage """
-<<<<<<< HEAD
-    # import pdb; pdb.set_trace()
-    return {}
-    # if request.method == 'GET':
-    #     try:
-    #         username = request.GET['username']
-    #         password = request.GET['password']
-    #         print('User: {}, Pass: {}'.format(username, password))
-
-    #         return HTTPFound(location=request.route.url('portfolio'))
-=======
     return {}
 
 
@@ -32,21 +21,10 @@ def register_page(request):
             print('User: {}, Pass: {}'.format(username, password))
 
             return HTTPFound(location=request.route_url('portfolio'))
->>>>>>> 115f2446013456e52774dfef129de9edf90092b1
 
-    #     except KeyError:
-    #         return {}
+        except KeyError:
+            return {}
 
-<<<<<<< HEAD
-    # if request.method == 'POST':
-    #     username = request.POST['username']
-    #     email = request.POST['email']
-    #     password = request.POST['password']
-    #     print('User: {}, Pass: {}, Email: {}'.format(
-    #                                          username, password, email))
-
-    #     return HTTPFound(location=request.route.url('portfolio'))
-=======
     if request.method == 'POST':
         try:
             username = request.POST['username']
@@ -58,7 +36,6 @@ def register_page(request):
 
         except KeyError:
             return HTTPNotFound()
->>>>>>> 115f2446013456e52774dfef129de9edf90092b1
 
     # return HTTPNotFound()
 
