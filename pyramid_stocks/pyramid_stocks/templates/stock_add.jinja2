@@ -1,8 +1,29 @@
 {% extends "base.jinja2" %}
 
 {% block content %}
-    <form id="add-form">
-        <button type="submit">Add to Portfolio</button>
+
+    <form id="stock-search-form" method="GET" action="{{request.route_url('stock')}}">
+        <label for="">Enter stock symbol to search</label>
+        <input type="text" name="symbol">
+        <input type="submit" name="submit" value="Search">
     </form>
+    {% if entry %}
+    <ul>
+        <li>{{entry['symbol']}}</li>
+        <li>{{entry['companyName']}}</li>
+        <li>{{entry['exchange']}}</li>
+        <li>{{entry['industry']}}</li>
+        <li>{{entry['website']}}</li>
+        <li>{{entry['description']}}</li>
+        <li>{{entry['CEO']}}</li>
+        <li>{{entry['issueType']}}</li>
+        <li>{{entry['sector']}}</li>
+        <form id="stock-add-form" method="POST" action="{{request.route_url('stock')}}">
+            <input type="hidden" name="new_stock" value="{{entry['symbol']}}">
+            <input type="submit" name="submit" value="Add">
+        </form>
+
+    </ul>
+    {% endif %}
     
 {% endblock content %}
