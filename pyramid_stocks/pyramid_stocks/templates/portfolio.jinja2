@@ -5,7 +5,7 @@
     <ul>
         {% for entry in entries %}
         <li>
-          <p><a href="{{request.route_url('detail', symbol=entry.symbol)}}">{{entry.companyName}}</a></p>
+          <p><a href="{{ request.route_url('detail', symbol=entry.symbol) }}">{{entry.companyName}}</a></p>
         </li>
         {% endfor %}
     </ul>
