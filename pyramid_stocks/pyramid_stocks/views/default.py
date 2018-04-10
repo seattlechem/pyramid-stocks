@@ -64,7 +64,8 @@ stock/{}/company'.format(symbol)
                 if val == symbol.upper():
                     return HTTPFound(location=request.route_url('portfolio'))
 
-        address = 'https://api.iextrading.com/1.0/stock/{}/company'.format(symbol)
+        address = 'https://api.iextrading.com/1.0/stock/{}/\
+company'.format(symbol)
         response = requests.get(address)
         response = response.json()
         MOCK_DATA.append(
