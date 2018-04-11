@@ -1,11 +1,16 @@
 # from pyramid.response import Response
 from pyramid.view import view_config
+from pyramid.security import NO_PERMISSION_REQUIRED, remember, forget
 from ..sample_data import MOCK_DATA
-from pyramid.httpexceptions import HTTPFound, HTTPNotFound
+from pyramid.httpexceptions import HTTPFound, HTTPNotFound, HTTPBadRequest,\
+                                   HTTPUnauthorized
 import requests
 
 
-@view_config(route_name='auth', renderer='../templates/register.jinja2')
+@view_config(
+    route_name='auth',
+    renderer='../templates/register.jinja2',
+    permission=NO_PERMISSION_REQUIRED)
 def register_page(request):
     """ Open register page """
     if request.method == 'GET':
