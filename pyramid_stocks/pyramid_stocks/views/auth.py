@@ -70,6 +70,12 @@ def register_page(request):
     return HTTPFound(location=request.route_url('home'))
 
 
+@view_config(route_name='logout')
+def logout(request):
+    headers = forget(request)
+    return HTTPFound(location=request.route_url('home'), headers=headers)
+
+
 @view_config(route_name='stock', renderer='../templates/stock_add.jinja2')
 def searching_stock_ticker(request):
     """ searching for a stock ticker symbol """
