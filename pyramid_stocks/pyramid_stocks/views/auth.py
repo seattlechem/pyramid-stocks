@@ -88,7 +88,6 @@ def view_existing_stocks(request):
              request_method='GET')
 def get_detail_view(request):
     """ detail about a user's existing stock """
-    import pdb; pdb.set_trace()
     symbol = request.matchdict['symbol']
     for entry in MOCK_DATA:
         if entry['symbol'] == symbol:
