@@ -3,10 +3,10 @@ from pyramid.view import view_config
 from pyramid.security import NO_PERMISSION_REQUIRED, remember, forget
 from ..sample_data import MOCK_DATA
 from sqlalchemy.exc import DBAPIError
-from pyramid.httpexceptions import HTTPFound, HTTPNotFound, HTTPBadRequest,\
-                                   HTTPUnauthorized
+from pyramid.httpexceptions import HTTPFound, HTTPBadRequest, HTTPUnauthorized
 import requests
 from . import DB_ERR_MSG
+from ..models import Account
 
 
 @view_config(
@@ -19,7 +19,6 @@ def register_page(request):
         try:
             username = request.GET['username']
             password = request.GET['password']
-            print('User: {}, Pass: {}'.format(username, password))
 
             return HTTPFound(location=request.route_url('portfolio'))
 
@@ -31,14 +30,44 @@ def register_page(request):
             username = request.POST['username']
             email = request.POST['email']
             password = request.POST['password']
-            print('User: {}, Pass: {}, Email: {}'.format(
-                                                username, password, email))
-            return HTTPFound(location=request.route_url('portfolio'))
 
         except KeyError:
-            return HTTPNotFound()
+            return HTTPBadRequest()
 
-    return HTTPNotFound()
+        try:
+            instance = Account(
+                username=username,
+                email=email,
+                password=password,
+            )
+
+            headers = remember(request, userid=instance.username)
+            request.dbsession.add(instance)
+
+            return HTTPFound(location=request.route_url('entries'),
+                             headers=headers)
+
+        except DBAPIError:
+            return Response(DB_ERR_MSG, content_type='text/plain', status=500)
+
+    if request.method == 'GET':
+        try:
+            username = request.GET['username']
+            password = request.GET['password']
+
+        except KeyError:
+            return {}
+
+        is_authenticated = Account.check_credentials(request, username,
+                                                     password)
+        if is_authenticated[0]:
+            headers = remember(request, userid=username)
+            return HTTPFound(location=request.route_url('entries'),
+                             headers=headers)
+        else:
+            return HTTPUnauthorized()
+
+    return HTTPFound(location=request.route_url('home'))
 
 
 @view_config(route_name='stock', renderer='../templates/stock_add.jinja2')
