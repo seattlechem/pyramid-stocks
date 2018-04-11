@@ -6,6 +6,7 @@ from sqlalchemy.exc import DBAPIError
 from pyramid.httpexceptions import HTTPFound, HTTPNotFound, HTTPBadRequest,\
                                    HTTPUnauthorized
 import requests
+from . import DB_ERR_MSG
 
 
 @view_config(
