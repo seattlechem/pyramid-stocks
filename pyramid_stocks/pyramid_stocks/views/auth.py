@@ -1,7 +1,8 @@
-# from pyramid.response import Response
+from pyramid.response import Response
 from pyramid.view import view_config
 from pyramid.security import NO_PERMISSION_REQUIRED, remember, forget
 from ..sample_data import MOCK_DATA
+from sqlalchemy.exc import DBAPIError
 from pyramid.httpexceptions import HTTPFound, HTTPNotFound, HTTPBadRequest,\
                                    HTTPUnauthorized
 import requests
