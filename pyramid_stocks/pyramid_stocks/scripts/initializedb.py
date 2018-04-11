@@ -16,6 +16,7 @@ from ..models import (
     get_tm_session,
     )
 from ..models import MyModel
+from ..models.accout import Account
 
 
 def usage(argv):
