@@ -1,8 +1,8 @@
 from pyramid.response import Response
 from pyramid.view import view_config
 from pyramid.security import NO_PERMISSION_REQUIRED, remember, forget
-from sqlalchemy.exc import DBAPIError
-from pyramid.httpexceptions import HTTPFound, HTTPBadRequest, HTTPUnauthorized
+from sqlalchemy.exc import DBAPIError, IntegrityError
+from pyramid.httpexceptions import HTTPFound, HTTPBadRequest, HTTPUnauthorized, HTTPConflict
 from . import DB_ERR_MSG
 from ..models import Account
 
@@ -45,7 +45,7 @@ def register_page(request):
                 email=email,
                 password=password,
             )
-
+            # import pdb; pdb.set_trace()
             headers = remember(request, userid=instance.username)
             request.dbsession.add(instance)
 

@@ -41,22 +41,22 @@ stock/{}/company'.format(symbol)
         except KeyError:
             return HTTPBadRequest()
 
-        query = request.dbsession.query(Stock)
+        try:
+            address = 'https://api.iextrading.com/1.0/\
+stock/{}/company'.format(symbol)
+            response = requests.get(address)
+            data = response.json()
+
+        except ValueError:
+            return HTTPNotFound()
+
+        instance = Stock(**data)
 
         try:
-            current = query.filter(Stock.symbol == symbol).first()
-            current.symbol = response['symbol']
-            current.companyName = response['companyName']
-            current.exchange = response['exchange']
-            current.industry = response['industry']
-            current.website = response['website']
-            current.description = response['description']
-            current.CEO = response['CEO']
-            current.issueType = response['issueType']
-            current.sector = response['sector']
+            request.dbsession.add(instance)
 
-        except AttributeError:
-            request.dbsession.add(Stock(**response))
+        except DBAPIError:
+            return Response(DB_ERR_MSG, content_type='text/plain', status=500)
 
         return HTTPFound(location=request.route_url('portfolio'))
 

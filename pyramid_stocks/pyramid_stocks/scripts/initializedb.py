@@ -16,7 +16,9 @@ from ..models import (
     get_tm_session,
     )
 
-from ..models import Stock
+from ..models.stock import Stock
+from ..models.account import Account
+from ..sample_data import MOCK_DATA
 
 
 def usage(argv):
@@ -42,8 +44,6 @@ def main(argv=sys.argv):
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
 
-        from ..sample_data import MOCK_DATA
-        import pdb; pdb.set_trace()
         for data in MOCK_DATA:
             stock = Stock(**data)
             dbsession.add(stock)
