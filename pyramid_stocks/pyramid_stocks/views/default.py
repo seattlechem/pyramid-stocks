@@ -1,11 +1,93 @@
 from pyramid.view import view_config
+from pyramid.response import Response
 from pyramid.security import NO_PERMISSION_REQUIRED
+from pyramid.httpexceptions import HTTPFound, HTTPNotFound, HTTPBadRequest
+from sqlalchemy.exc import DBAPIError, IntegrityError
+from . import DB_ERR_MSG
+from ..models import Stock
+from ..models import Account
+from ..sample_data import MOCK_DATA
+import requests
 
 
 @view_config(
     route_name='home',
     renderer='../templates/base.jinja2',
+    request_method='GET',
     permission=NO_PERMISSION_REQUIRED)
 def my_view(request):
     """ Route back to homepage """
     return {}
+
+
+@view_config(route_name='stock', renderer='../templates/stock_add.jinja2')
+def searching_stock_ticker(request):
+    """ searching for a stock ticker symbol """
+    if request.method == 'GET':
+        try:
+            symbol = request.GET['symbol']
+        except KeyError:
+            return {}
+        address = 'https://api.iextrading.com/1.0/\
+stock/{}/company'.format(symbol)
+        response = requests.get(address)
+        response = response.json()
+
+        return {'entry': response}
+
+    if request.method == 'POST':
+        try:
+            symbol = request.POST['new_stock']
+        except KeyError:
+            return HTTPBadRequest()
+
+        query = request.dbsession.query(Stock)
+
+        try:
+            current = query.filter(Stock.symbol == symbol).first()
+            current.symbol = response['symbol']
+            current.companyName = response['companyName']
+            current.exchange = response['exchange']
+            current.industry = response['industry']
+            current.website = response['website']
+            current.description = response['description']
+            current.CEO = response['CEO']
+            current.issueType = response['issueType']
+            current.sector = response['sector']
+
+        except AttributeError:
+            request.dbsession.add(Stock(**response))
+
+        return HTTPFound(location=request.route_url('portfolio'))
+
+
+@view_config(route_name='portfolio', renderer='../templates/portfolio.jinja2',
+             request_method='GET')
+def view_existing_stocks(request):
+    """ display user's existing stocks"""
+
+    query = request.dbsession.query(Stock)
+    all_entries = query.all()
+    return {'entries': all_entries}
+
+
+@view_config(route_name='detail', renderer='../templates/stock_detail.jinja2',
+             request_method='GET')
+def get_detail_view(request):
+    """ detail about a user's existing stock """
+    try:
+        symbol = request.matchdict['symbol']
+    except KeyError:
+        return HTTPNotFound()
+
+    try:
+        query = request.dbsession.query(Stock)
+
+    except DBAPIError:
+        return DBAPIError(DB_ERR_MSG, content_type='text/plain', status=500)
+
+    for entry in query.all():
+        if entry.symbol == symbol:
+            return {'result': entry}
+
+    return HTTPNotFound

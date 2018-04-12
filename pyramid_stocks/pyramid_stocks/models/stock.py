@@ -16,6 +16,6 @@ class Stock(Base):
     industry = Column(String)
     website = Column(String)
     description = Column(String)
-    CEO = Column(String) 
+    CEO = Column(String)
     issueType = Column(String)
     sector = Column(String)
