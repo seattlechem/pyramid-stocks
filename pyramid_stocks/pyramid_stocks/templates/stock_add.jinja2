@@ -19,6 +19,7 @@
         <li>{{entry['issueType']}}</li>
         <li>{{entry['sector']}}</li>
         <form id="stock-add-form" method="POST" action="{{request.route_url('stock')}}">
+            <input type="hidden" name="csrf_token" value="{{request.session.get_csrf_token()}}">
             <input type="hidden" name="new_stock" value="{{entry['symbol']}}">
             <input type="submit" name="submit" value="Add">
         </form>
