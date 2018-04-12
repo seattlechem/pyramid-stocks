@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>Registration:</h1>
+    <h1>testing</h1>
 
     <form id="registration-form" method="POST" action="{{request.route_url('auth')}}">
         <input type="hidden" name="csrf_token" value="{{request.session.get_csrf_token()}}">
@@ -16,6 +17,7 @@
 
         <input type="submit" name="submit" value="registration">
     </form>
+
     <h1>Login:</h1>
 
     <form id="registration-form" method="GET" action="{{request.route_url('auth')}}">

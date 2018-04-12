@@ -9,7 +9,7 @@ from ..models import Account
 
 @view_config(
     route_name='auth',
-    renderer='../templates/register.jinja2',
+    renderer='../templates/login.jinja2',
     permission=NO_PERMISSION_REQUIRED)
 def register_page(request):
     """ Open register page """
