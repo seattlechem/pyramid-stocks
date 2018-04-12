@@ -43,6 +43,7 @@ def main(argv=sys.argv):
         dbsession = get_tm_session(session_factory, transaction.manager)
 
         from ..sample_data import MOCK_DATA
+        import pdb; pdb.set_trace()
         for data in MOCK_DATA:
             stock = Stock(**data)
             dbsession.add(stock)
