@@ -20,10 +20,17 @@ def register_page(request):
             username = request.GET['username']
             password = request.GET['password']
 
-            return HTTPFound(location=request.route_url('portfolio'))
-
         except KeyError:
             return {}
+
+        is_authenticated = Account.check_credentials(request, username,
+                                                     password)
+        if is_authenticated[0]:
+            headers = remember(request, userid=username)
+            return HTTPFound(location=request.route_url('portfolio'),
+                             headers=headers)
+        else:
+            return HTTPUnauthorized()
 
     if request.method == 'POST':
         try:
