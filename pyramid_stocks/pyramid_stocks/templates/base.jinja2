@@ -12,18 +12,14 @@
 <body>
     <nav>
       <ul>
-<<<<<<< HEAD
-        <li><a href="{{request.route_url('home')}}">Home</a></li>
-        <li><a href="{{request.route_url('auth')}}">Auth</a></li>
-        <li><a href="{{request.route_url('stock')}}">Stock</a></li>
-        <li><a href="{{request.route_url('portfolio')}}">Portfolio</a></li>
-        <li><a href="{{request.route_url('detail')}}">Detail</a></li>
-=======
         <li><a href="{{ request.route_url('home') }}">Home</a></li>
-        <li><a href="{{ request.route_url('auth') }}">Auth</a></li>
-        <li><a href="{{ request.route_url('stock') }}">Stock</a></li>
+        {% if request.authenticated_userid %}
         <li><a href="{{ request.route_url('portfolio') }}">Portfolio</a></li>
->>>>>>> 115f2446013456e52774dfef129de9edf90092b1
+        <li><a href="{{ request.route_url('stock') }}">Stock</a></li>
+        <li><a href="{{ request.route_url('logout') }}">Logout</a></li>
+        {% else %}
+        <li><a href="{{ request.route_url('auth') }}">Login / Registration</a></li>
+        {% endif %}
       </ul>
     </nav>
     <h1>Stock Portfolio</h1>

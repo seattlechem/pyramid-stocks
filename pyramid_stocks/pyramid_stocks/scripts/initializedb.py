@@ -15,7 +15,10 @@ from ..models import (
     get_session_factory,
     get_tm_session,
     )
-from ..models import MyModel
+
+from ..models.stock import Stock
+from ..models.account import Account
+from ..sample_data import MOCK_DATA
 
 
 def usage(argv):
@@ -41,5 +44,6 @@ def main(argv=sys.argv):
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
 
-        model = MyModel(name='one', value=1)
-        dbsession.add(model)
+        for data in MOCK_DATA:
+            stock = Stock(**data)
+            dbsession.add(stock)
