@@ -9,6 +9,6 @@ from .meta import Base
 
 association_table = Table(
     'association', Base.metadata,
-    Column('account_id', Integer, ForeignKey('account.id')),
-    Column('stock_id', Integer, ForeignKey('stock.id'))
+    Column('account_id', Integer, ForeignKey('accounts.id')),
+    Column('stock_id', Integer, ForeignKey('stocks.id'))
 )
