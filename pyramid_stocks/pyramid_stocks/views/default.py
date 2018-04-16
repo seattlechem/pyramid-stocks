@@ -39,7 +39,7 @@ stock/{}/company'.format(symbol)
         try:
             symbol = request.POST['new_stock']
         except KeyError:
-            return HTTPBadRequest()
+            raise HTTPBadRequest()
 
         try:
             address = 'https://api.iextrading.com/1.0/\
