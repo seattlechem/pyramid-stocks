@@ -17,8 +17,8 @@ def test_stock():
 def configuration(request):
     """Setup a database for testing purposes."""
     config = testing.setUp(settings={
-        'sqlalchemy.url': os.environ['TEST_DATABASE_URL']
-        # 'sqlalchemy.url': 'postgres://localhost:5432/stocks_test'
+        # 'sqlalchemy.url': os.environ['TEST_DATABASE_URL']
+        'sqlalchemy.url': 'postgres://localhost:5432/stocks_test'
        })
     config.include('pyramid_stocks.models')
     config.include('pyramid_stocks.routes')

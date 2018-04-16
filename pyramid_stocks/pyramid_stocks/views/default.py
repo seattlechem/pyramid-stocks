@@ -31,6 +31,8 @@ def searching_stock_ticker(request):
         address = 'https://api.iextrading.com/1.0/\
 stock/{}/company'.format(symbol)
         response = requests.get(address)
+        if response._content.decode('utf8') == 'Unknown symbol':
+            return {}
         response = response.json()
 
         return {'entry': response}
@@ -50,15 +52,28 @@ stock/{}/company'.format(symbol)
         except ValueError:
             return HTTPNotFound()
 
-        instance = Stock(**data)
+        query = request.dbsession.query(Account)
+        instance = query.filter(Account.username == request.authenticated_userid).first()
+
+        query = request.dbsession.query(Stock)
+        instance2 = query.filter(Stock.symbol == request.POST['new_stock']).first()
+
+        if instance2:
+            instance2.account_id.append(instance)
+
+        else:
+            new = Stock(**data)
+            # instance = Stock(**data)
 
         try:
-            request.dbsession.add(instance)
+            new = Stock(**data)
+            request.dbsession.add(new)
+            request.dbsession.flush()
 
-        except DBAPIError:
-            return Response(DB_ERR_MSG, content_type='text/plain', status=500)
+        except IntegrityError:
+            pass
 
-        return HTTPFound(location=request.route_url('portfolio'))
+    return HTTPFound(location=request.route_url('portfolio'))
 
 
 @view_config(route_name='portfolio', renderer='../templates/portfolio.jinja2',
